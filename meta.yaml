@@ -1,33 +1,40 @@
 package:
-	name: SimulationIO
-	version: "0.1.0"
+  name: pysimulationio
+  version: "0.1.0"
 
 source:
-	git_rev: release-0.1
-	git_url: https://github.com/eschnett/SimulationIO.git
+  git_rev: release-0.1
+  git_url: https://github.com/Yurlungur/SimulationIO
 
 build:
-	number: 0
+  number: 4
+  preserve_egg_dir: True
 
 requirements:
-	build:
-	- cython
-	- swig
-	- gcc >= 4.8.5
-	- hdf5 >= 1.8.16
-	- libgcc >= 4.8.5
-	- mpi4py
-	- mpich
-	- setuptools
-run:
-	- numpy
-	- scipy
-	- h5py
-	- mpi4py
-	- hdf5 >= 1.8.16
-	- libgcc >= 4.8.5
-	- mpich
+  build:
+    - python
+    - swig
+    - gcc >=4.8.5
+    - hdf5 >=1.8.16
+    - libgcc >=4.8.5
+    - mpich2
+    - setuptools
+
+  run:
+    - python
+    - mpich2
+    - hdf5 >=1.8.16
+
+test:
+  source_files:
+    - test_RegionCalculus
+    - test_SimulationIO
+
+  commands:
+    - ./test_RegionCalculus
+    - ./test_SimulationIO
+    - python -c 'from __future__ import print_function; import pysimulationio; print(pysimulationio.__file__)'
 
 about:
-	home: https://github.com/eschnett/SimulationIO
-	license: LGPLv3
+  home: https://github.com/eschnett/SimulationIO
+  license: LGPLv3
